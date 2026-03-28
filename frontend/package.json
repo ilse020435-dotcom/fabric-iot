@@ -1,0 +1,30 @@
+{
+  "name": "fabric-iot-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "基于区块链的物联网设备生命周期管理系统前端",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@vicons/ionicons5": "^0.13.0",
+    "axios": "^1.8.4",
+    "axios-mock-adapter": "^2.1.0",
+    "echarts": "^5.6.0",
+    "naive-ui": "^2.40.4",
+    "pinia": "^3.0.1",
+    "vue": "^3.5.13",
+    "vue-echarts": "^7.0.3",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.2",
+    "vue-tsc": "^2.2.8"
+  }
+}

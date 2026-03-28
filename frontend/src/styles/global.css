@@ -1,0 +1,132 @@
+﻿:root {
+  --app-bg: #eef4ff;
+  --panel-bg: #ffffff;
+  --panel-border: #dce7ff;
+  --panel-shadow: 0 8px 24px rgba(26, 73, 141, 0.08);
+  --primary-blue: #1f6feb;
+  --text-main: #1d2a44;
+  --text-secondary: #5b6b88;
+  --search-bg: rgba(242, 248, 255, 0.85);
+  --stat-bg: linear-gradient(145deg, #f8fbff, #ffffff);
+  --stat-border: #dce9ff;
+  --header-bg: linear-gradient(90deg, #f8fbff, #f1f7ff);
+  --header-title: #264a9b;
+  --header-user: #2c3e67;
+  --logo-color: #2f67e4;
+  --logo-border: #e1e9fb;
+  --json-bg: #0f1729;
+  --json-color: #e9f0ff;
+  --login-bg: linear-gradient(160deg, #eef5ff 0%, #dcecff 52%, #f2f8ff 100%);
+  --login-glow-1: radial-gradient(circle, rgba(34, 124, 245, 0.34), rgba(34, 124, 245, 0));
+  --login-glow-2: radial-gradient(circle, rgba(80, 166, 255, 0.25), rgba(80, 166, 255, 0));
+  --login-card-bg: rgba(255, 255, 255, 0.95);
+  --login-title: #154096;
+  --login-subtitle: #5f7cab;
+  --login-tip: #5e6f91;
+}
+
+body.dark-mode {
+  --app-bg: #0b1220;
+  --panel-bg: #131d32;
+  --panel-border: #273857;
+  --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  --text-main: #e8eef9;
+  --text-secondary: #98abc9;
+  --search-bg: rgba(20, 31, 52, 0.92);
+  --stat-bg: linear-gradient(145deg, #14203a, #111a2f);
+  --stat-border: #2a3d5f;
+  --header-bg: linear-gradient(90deg, #111b2f, #0f1829);
+  --header-title: #8eb3ff;
+  --header-user: #c3d4f3;
+  --logo-color: #5c8dff;
+  --logo-border: #263a5d;
+  --json-bg: #0a1120;
+  --json-color: #d7e3ff;
+  --login-bg: linear-gradient(160deg, #0c1528 0%, #0f1b31 52%, #0b1528 100%);
+  --login-glow-1: radial-gradient(circle, rgba(63, 116, 255, 0.35), rgba(63, 116, 255, 0));
+  --login-glow-2: radial-gradient(circle, rgba(40, 170, 255, 0.2), rgba(40, 170, 255, 0));
+  --login-card-bg: rgba(18, 28, 47, 0.94);
+  --login-title: #8eb3ff;
+  --login-subtitle: #a4b6d8;
+  --login-tip: #91a7ce;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+body {
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(31, 111, 235, 0.16), transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(41, 139, 255, 0.14), transparent 25%),
+    linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
+  transition: background 0.24s ease, color 0.24s ease;
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(63, 116, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(40, 170, 255, 0.14), transparent 25%),
+    linear-gradient(180deg, #081123 0%, #0a1324 100%);
+}
+
+.page-container {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--panel-shadow);
+}
+
+.page-section-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.page-section-desc {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.24s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.json-viewer {
+  margin: 0;
+  max-height: 460px;
+  overflow: auto;
+  border-radius: 10px;
+  background: var(--json-bg);
+  color: var(--json-color);
+  padding: 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}

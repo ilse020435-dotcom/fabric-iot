@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "uv",
+      "args": [
+        "run",
+        "mysql_mcp_server"
+      ],
+      "env": {
+        "MYSQL_DATABASE": "fabric_iot",
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PASSWORD": "123456",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "root"
+      }
+    }
+  }
+}
