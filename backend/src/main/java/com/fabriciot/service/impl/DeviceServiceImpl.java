@@ -325,8 +325,9 @@ public class DeviceServiceImpl implements DeviceService {
         lifecycleEventMapper.insert(lifecycleEvent);
 
         MonitorStatus monitorStatus = mapLifecycleToMonitorStatus(target);
+        IotDeviceStatusSnapshot snapshot = null;
         if (monitorStatus != null) {
-            IotDeviceStatusSnapshot snapshot = new IotDeviceStatusSnapshot();
+            snapshot = new IotDeviceStatusSnapshot();
             snapshot.setDeviceId(deviceId);
             snapshot.setMonitorStatus(monitorStatus.getCode());
             snapshot.setSummaryHash(summaryHash);
@@ -354,6 +355,13 @@ public class DeviceServiceImpl implements DeviceService {
                 lifecycleEventMapper.update(null, new LambdaUpdateWrapper<IotDeviceLifecycleEvent>()
                         .eq(IotDeviceLifecycleEvent::getId, lifecycleEvent.getId())
                         .set(IotDeviceLifecycleEvent::getTxHash, txResult.getTxHash()));
+                if (snapshot != null && snapshot.getId() != null) {
+                    snapshotMapper.update(null, new LambdaUpdateWrapper<IotDeviceStatusSnapshot>()
+                            .eq(IotDeviceStatusSnapshot::getId, snapshot.getId())
+                            .set(IotDeviceStatusSnapshot::getTxHash, txResult.getTxHash())
+                            .set(IotDeviceStatusSnapshot::getBlockHeight,
+                                    txResult.getBlockHeight() == null ? 0L : txResult.getBlockHeight()));
+                }
                 auditRecordService.markOnChainSuccess(auditLog.getLogId(), txResult.getTxHash());
                 blockchainTxRecordService.recordSuccess(deviceId, operationType.getCode(), summaryHash, txResult, payload);
             } else {
