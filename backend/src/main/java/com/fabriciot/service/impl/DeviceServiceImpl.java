@@ -206,6 +206,7 @@ public class DeviceServiceImpl implements DeviceService {
         payload.put("did", did);
         payload.put("operationType", OperationType.REGISTER.getCode());
         payload.put("summaryHash", summaryHash);
+        attachOperationMeta(payload, operator, now);
 
         try {
             FabricTransactionResult txResult = fabricContractService.registerDevice(deviceId, request.getDeviceName(), operator);
@@ -265,6 +266,7 @@ public class DeviceServiceImpl implements DeviceService {
         payload.put("operationType", OperationType.UPDATE.getCode());
         payload.put("summaryHash", summaryHash);
         payload.put("request", request);
+        attachOperationMeta(payload, operator, lifecycleEvent.getOccurredAt());
         try {
             FabricTransactionResult txResult = fabricContractService.submitTransaction("updateDeviceMetadata", deviceId, summaryHash, operator);
             if (txResult.isSuccess()) {
@@ -349,6 +351,7 @@ public class DeviceServiceImpl implements DeviceService {
         payload.put("beforeStatus", current.getCode());
         payload.put("afterStatus", target.getCode());
         payload.put("summaryHash", summaryHash);
+        attachOperationMeta(payload, operator, now);
         try {
             FabricTransactionResult txResult = fabricContractService.changeLifecycle(deviceId, current.getCode(), target.getCode(), summaryHash, operator);
             if (txResult.isSuccess()) {
@@ -438,6 +441,7 @@ public class DeviceServiceImpl implements DeviceService {
         payload.put("signalStrength", request.getSignalStrength());
         payload.put("temperature", request.getTemperature());
         payload.put("summaryHash", summaryHash);
+        attachOperationMeta(payload, operator, now);
 
         try {
             FabricTransactionResult txResult = fabricContractService.syncStatusSummary(deviceId, monitorStatus.getCode(), summaryHash, operator);
@@ -487,5 +491,10 @@ public class DeviceServiceImpl implements DeviceService {
                 .orderByDesc(IotBlockchainTx::getTimestamp)
                 .last("LIMIT 1"));
         return list.isEmpty() ? null : list.get(0);
+    }
+
+    private void attachOperationMeta(Map<String, Object> payload, String operator, LocalDateTime operateTime) {
+        payload.put("operator", operator);
+        payload.put("operateTime", assemblerSupport.format(operateTime));
     }
 }

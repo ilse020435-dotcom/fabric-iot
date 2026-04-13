@@ -57,8 +57,8 @@
         <n-card size="small" title="上链摘要" :bordered="false" style="margin-top: 12px">
           <n-descriptions bordered :column="1" size="small">
             <n-descriptions-item label="摘要Hash">{{ detail.summaryHash }}</n-descriptions-item>
-            <n-descriptions-item label="写集键">{{ detail.writeSet?.key || '--' }}</n-descriptions-item>
-            <n-descriptions-item label="写集版本">{{ detail.writeSet?.version || '--' }}</n-descriptions-item>
+<!--            <n-descriptions-item label="写集键">{{ detail.writeSet?.key || '&#45;&#45;' }}</n-descriptions-item>-->
+<!--            <n-descriptions-item label="写集版本">{{ detail.writeSet?.version || '&#45;&#45;' }}</n-descriptions-item>-->
           </n-descriptions>
         </n-card>
       </template>
